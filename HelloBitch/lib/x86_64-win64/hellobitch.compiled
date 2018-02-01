@@ -2,4 +2,5 @@
 <CONFIG>
   <Compiler Value="D:\APPS\Lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1266910071"/>
   <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq -FiD:\GIT\CheekiCheetah\HelloBitch\lib\x86_64-win64 -FuD:\APPS\Lazarus\lcl\units\x86_64-win64\win32 -FuD:\APPS\Lazarus\lcl\units\x86_64-win64 -FuD:\APPS\Lazarus\components\lazutils\lib\x86_64-win64 -FuD:\APPS\Lazarus\packager\units\x86_64-win64 -FuD:\GIT\CheekiCheetah\HelloBitch\ -FUD:\GIT\CheekiCheetah\HelloBitch\lib\x86_64-win64\ -dLCL -dLCLwin32 hellobitch.lpr"/>
+  <Complete Value="False"/>
 </CONFIG>

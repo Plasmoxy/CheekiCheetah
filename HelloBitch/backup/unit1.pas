@@ -37,7 +37,7 @@ end;
 
 procedure TForm1.Label1Click(Sender: TObject);
 begin
-     Label1.Caption := 'KYS.';
+     Label1.Caption := 'KYS';
 end;
 
 
