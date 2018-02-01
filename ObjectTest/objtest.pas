@@ -41,15 +41,15 @@ end;
 
 procedure XD.dump();
 begin
-     writeln('val = ' + IntToStr(val));
+     writeln('val = ' + inttostr(val));
 end;
 
 { --- end class --- }
 
 var
-   x : XD;
+   x : xd;
 begin
-     x := XD.create();
+     x := xd.create();
      x.dump();
      x.increment();
      x.dump();

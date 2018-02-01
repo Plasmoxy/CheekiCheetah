@@ -13,10 +13,6 @@ type XD = class
     procedure setVal(_val : Integer);
     procedure increment();
     procedure dump();
-    procedure xd();
-    begin
-         writeln(3);
-    end;
 end;
 
 {
@@ -45,7 +41,7 @@ end;
 
 procedure XD.dump();
 begin
-     writeln('val = ' + IntToStr(val));
+     writeln('val = ' + inttostr(val));
 end;
 
 { --- end class --- }
