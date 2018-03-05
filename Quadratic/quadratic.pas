@@ -12,6 +12,7 @@ type SolveQuadratic = class
       a,b,c,d : double;
       roots : array of double;
       complexRoots : array of Complex;
+      retarded : boolean;
       procedure addRoot(_root : double);
       procedure addComplexRoot(_croot : Complex);
     public
@@ -30,14 +31,20 @@ end;
     
     d := power(b, 2) - 4*a*c;
 
-    if d<0 then begin
-      addComplexRoot( (-b+csqrt( cinit(d, 0)) ) / (2*a) );
-      addComplexRoot( (-b-csqrt( cinit(d, 0)) ) / (2*a) );
+    if a=0 then begin
+      if (b=0) then retarded := true
+      else addRoot( -c/b );
     end
-    else if d=0 then addRoot( -b/(2*a) )
-    else if d>0 then begin
-      addRoot( (-b+sqrt(d))/(2*a) );
-      addRoot( (-b-sqrt(d))/(2*a) );
+    else begin
+      if d<0 then begin
+        addComplexRoot( (-b+csqrt( cinit(d, 0)) ) / (2*a) );
+        addComplexRoot( (-b-csqrt( cinit(d, 0)) ) / (2*a) );
+      end
+      else if d=0 then addRoot( -b/(2*a) )
+      else if d>0 then begin
+        addRoot( (-b+sqrt(d))/(2*a) );
+        addRoot( (-b-sqrt(d))/(2*a) );
+      end;
     end;
 
   end;
@@ -60,6 +67,11 @@ end;
   begin
     writeln('===[ '+dtos2(a)+'x^2 + '+dtos2(b)+'x + '+dtos2(c)+' = 0 ]===');
     writeln;
+    
+    if retarded then begin
+      writeln('=== NAPISALI STE RETARDOVANY VYRAZ PROSIM PEKNE :)))) ===');
+      exit();
+    end;
 
     writeln(' === REALNE KORENE ===');
     len := length(roots);
@@ -69,6 +81,7 @@ end;
     for it:=1 to len do begin
       write('  ' + dtos(roots[it-1]));
       if it<len then write(',');
+      writeln;
     end;
     writeln('}');
     
