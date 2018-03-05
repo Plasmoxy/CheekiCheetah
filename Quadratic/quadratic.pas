@@ -3,7 +3,7 @@
 
 program quadratic;
 
-uses crt, sysutils, math;
+uses crt, sysutils, math, ucomplex;
 
 { ---- OBJ ---- }
 
@@ -11,7 +11,9 @@ type SolveQuadratic = class
     private
       a,b,c,d : double;
       roots : array of double;
+      complexRoots : array of Complex;
       procedure addRoot(_root : double);
+      procedure addComplexRoot(_croot : Complex);
     public
       constructor create(_a,_b,_c : double);
       procedure printRoots();
@@ -27,8 +29,12 @@ end;
     c := _c;
     
     d := power(b, 2) - 4*a*c;
-    
-    if d=0 then addRoot( -b/(2*a) )
+
+    if d<0 then begin
+      addComplexRoot( (-b+csqrt( cinit(d, 0)) ) / (2*a) );
+      addComplexRoot( (-b-csqrt( cinit(d, 0)) ) / (2*a) );
+    end
+    else if d=0 then addRoot( -b/(2*a) )
     else if d>0 then begin
       addRoot( (-b+sqrt(d))/(2*a) );
       addRoot( (-b-sqrt(d))/(2*a) );
@@ -42,21 +48,42 @@ end;
     roots[length(roots)-1] := _root;
   end;
 
+  procedure SolveQuadratic.addComplexRoot(_croot : Complex);
+  begin
+    setlength(complexRoots, length(complexRoots)+1);
+    complexRoots[length(complexRoots)-1] := _croot;
+  end;
+
   procedure SolveQuadratic.printRoots();
   var
-    l : integer;
+    it, len : integer; // iterator, length of array
   begin
     writeln('===[ '+dtos2(a)+'x^2 + '+dtos2(b)+'x + '+dtos2(c)+' = 0 ]===');
+    writeln;
+
+    writeln(' === REALNE KORENE ===');
+    len := length(roots);
     
-    l := length(roots);
-    if l=0 then writeln('NEMA KOREN V R !')
-    else if l=1 then writeln('x = ' + dtos(roots[0]))
-    else if l=2 then begin
-      writeln('x1 = ' + dtos(roots[0]));
-      writeln('x2 = ' + dtos(roots[1]));
+    write('K(R) = {');
+    if len>0 then writeln; // cosmetic
+    for it:=1 to len do begin
+      write('  ' + dtos(roots[it-1]));
+      if it<len then write(',');
     end;
+    writeln('}');
     
-    writeln('================');
+    writeln(' === KOMPLEXNE KORENE ===');
+    len := length(complexRoots);
+    
+    write('K(C) = {');
+    if len>0 then writeln; // cosmetic
+    for it:=1 to len do begin
+      write('  ' + cstr(complexRoots[it-1], 6, 6));
+      if it<len then write(',');
+      writeln;
+    end;
+    writeln('}');
+
   end;
   
   function SolveQuadratic.dtos(_value : double) : string;
@@ -84,6 +111,8 @@ var
   a,b,c : double;
 
 begin
+  
+  DefaultFormatSettings.DecimalSeparator := '.'; // nemam rad ciarku :(
   
   active := true;
   
