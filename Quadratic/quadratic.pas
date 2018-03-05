@@ -5,6 +5,7 @@ program quadratic;
 
 uses crt, sysutils, math;
 
+{ ---- OBJ ---- }
 
 type SolveQuadratic = class
     private
@@ -72,6 +73,8 @@ end;
   begin
     exit(d);
   end;
+
+{ ------- PROGRAM -------- }
 
 const
   nl = slinebreak;
