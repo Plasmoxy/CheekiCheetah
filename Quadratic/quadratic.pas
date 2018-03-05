@@ -10,12 +10,12 @@ uses crt, sysutils, math, ucomplex;
 type SolveQuadratic = class
     private
       a,b,c,d : double;
-      roots : array of double;
       complexRoots : array of Complex;
       retarded : boolean;
       procedure addRoot(_root : double);
       procedure addComplexRoot(_croot : Complex);
     public
+      roots : array of double;
       constructor create(_a,_b,_c : double);
       procedure printRoots();
       function getDiscriminant() : double;
@@ -146,6 +146,7 @@ begin
     except
       on E: Exception do begin
         writeln('CHYBA VSTUPU, SKUSTE ESTE RAZ ! (stlac klaves)');
+        writeln('BTW desatinna ciarka je bodka = "." ( to kvoli citatelnosti )');
         readkey;
         continue;
       end;
