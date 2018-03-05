@@ -105,9 +105,9 @@ begin
         continue;
       end;
     end;
-
+    
     writeln;
-
+    
     try SolveQuadratic.create(a,b,c).printRoots();
     except
       on E: Exception do writeln('Fatalna chyba pri vypocte.')
