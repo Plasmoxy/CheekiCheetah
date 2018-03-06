@@ -6,6 +6,7 @@ program quadratic;
 uses crt, sysutils, math, ucomplex;
 
 { ---- OBJ ---- }
+// najprv si zhotovim nastroj na pocitanie
 
 type SolveQuadratic = class
     private
@@ -115,9 +116,10 @@ end;
   end;
 
 { ------- PROGRAM -------- }
+// tu svoj nastroj vyuzijem
 
 const
-  nl = slinebreak;
+  nl = slinebreak; // skratka pre zlom riadka
   
 var
   active : boolean;
